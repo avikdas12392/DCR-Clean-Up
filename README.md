@@ -22,7 +22,7 @@ If not found → calls Serper, then stores the JSON in both caches.
 Keeps: per-row dedupe, global dedupe for output 1, fuzzy matching to build output 2, robust progress logging/resume
 
 
-What changed (per your ask)
+Version 4: What changed (per your ask)
 
 Search payload uses: Associate Hospital (as the query base), OLat, OLong, pin — with gl="in" and optional radius.
 
