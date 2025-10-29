@@ -20,3 +20,24 @@ Checks vicinity_cache before calling Serper; if found → reuses results and pri
 If not found → calls Serper, then stores the JSON in both caches.
 
 Keeps: per-row dedupe, global dedupe for output 1, fuzzy matching to build output 2, robust progress logging/resume
+
+
+What changed (per your ask)
+
+Search payload uses: Associate Hospital (as the query base), OLat, OLong, pin — with gl="in" and optional radius.
+
+Output 1 now includes: Rating, Reviews (and keeps prior fields).
+
+Output 2 = all input columns (including OLat, OLong) + Output 1 fields (Lat, Long, etc.) + FuzzyScore.
+
+Keeps resumability, per-row + global dedupe, and vicinity cache.
+
+Reset behavior for a fresh batch
+
+Clear progress only: delete progress_log.json.
+
+Clear global dedupe (allow re-writing Output 1 for previously-seen places): delete serper_seen.sqlite3.
+
+Clear cache (force fresh API calls): delete vicinity_cache.sqlite3.
+
+If you want clean headers in outputs: delete output 1.xlsx and/or output 2.xlsx.
